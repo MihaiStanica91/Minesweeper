@@ -1,0 +1,40 @@
+h1 {
+    padding-top: 20px;
+    text-align: center;
+    text-shadow: 2px 2px 5px rgb(22, 59, 228);
+}
+
+h2 {
+    padding-top: 20px;
+    text-align: center;
+    text-shadow: 2px 2px 5px rgb(226, 10, 64);
+}
+
+.btn {
+    margin: 0;
+    position: absolute;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+button {
+    width: 150px;
+    height: 50px;
+}
+
+.container {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-template-rows: repeat(var(--size), 1fr);
+    grid-template-columns: repeat(var(--size), 1fr);
+    user-select: none;
+    margin-bottom: 20px;
+}
+  
+.grid-item {
+    border: 2px solid black;
+    width: 40px;
+    height: 40px;
+}
