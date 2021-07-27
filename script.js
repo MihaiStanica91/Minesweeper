@@ -30,11 +30,7 @@ function makeBoard() { //create the board game
         for (let y = 0; y < numberCols; ++y) {
             board[x][y] = 0; //when the board is created, all cells have value 0
             cellValue[x][y] = 1; //unclicked cells have value 1
-            let cell = document.createElement("button");
-            cell.type = "button";
-            let idCell = x.toString() + "." + y.toString();
-            cell.id = idCell;
-            cell.setAttribute("style", "background-color: grey");
+            let cell = createCell(x, y);
             container.appendChild(cell).className = "grid-item"; 
 
             cell.onclick = function() {checkCell(x, y)};
@@ -42,6 +38,14 @@ function makeBoard() { //create the board game
     }
     setBombs(numberBombs);
     setValuesAroundBombs();
+}
+
+function createCell(x, y) {
+    var btn = document.createElement("button");
+    btn.setAttribute("style", "background-color: grey");
+    btn.type = "button";
+    btn.id = x.toString() + "." + y.toString();
+    return btn;
 }
 
 function setValuesAroundBombs() { //sets the values around a bomb
