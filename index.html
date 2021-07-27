@@ -11,12 +11,12 @@
 <body>
     <h1>Minesweeper</h1>
     <br> <br> <br>
-    <div id="buttonsDifficulty" class="btn" aria-label="difficulty" style="display: block">
+    <div id="buttonsDifficulty" class="col text-center" aria-label="difficulty" style="display: block">
         <button id="easyDifficulty" class="btn-lg btn-success" onclick="startGame(9, 9, 10)">Easy</button>
         <button id="mediumDifficulty" class="btn-lg btn-warning" onclick="startGame(16, 16, 40)">Medium</button>
         <button id="mediumDifficulty" class="btn-lg btn-danger" onclick="startGame(16, 30, 99)">Hard</button>
       </div>
-    <div id="restart" class="btn">
+    <div id="restart" class="d-flex justify-content-center">
         <button id="restartButton" class="btn-lg btn-danger" style="display: none" onclick="restartGame()">Restart!</button>
     </div>
     <br>

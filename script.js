@@ -73,7 +73,7 @@ function setBombs(numberBombs) { // places the bombs randomly on board
 
 function checkCell(x, y) { // checks what type of cell was clicked (bomb-cell or number-cell)
     if (board[x][y] == 0 && cellValue[x][y] == 1) {
-        moreCell(x, y);
+        revealCells(x, y);
     } else if (board[x][y] > 0 && cellValue[x][y] == 1) {
         showCell(x, y);
         cellValue[x][y] = 0;
@@ -83,17 +83,15 @@ function checkCell(x, y) { // checks what type of cell was clicked (bomb-cell or
     checkWin();
 }
 
-function moreCell(x, y) { //reveals all the cells
+function revealCells(x, y) { //reveals all the cells
     for (let indexRow = x - 1; indexRow <= x + 1; ++indexRow) {
         for (let indexCol = y - 1; indexCol <= y + 1; ++indexCol) {
             if (indexRow >= 0 && indexCol >= 0 && indexRow < numberLines && indexCol < numberCols) {
-                if (board[indexRow][indexCol] >= 0) {
-                    if(cellValue[indexRow][indexCol] == 1) {
-                        cellValue[indexRow][indexCol] = 0; //clicked cells have value 0
-                        showCell(indexRow, indexCol);
-                        if (board[indexRow][indexCol] == 0) {
-                            moreCell(indexRow, indexCol);
-                        }
+                if (board[indexRow][indexCol] >= 0 && cellValue[indexRow][indexCol] == 1) {
+                    cellValue[indexRow][indexCol] = 0; //clicked cells have value 0
+                    showCell(indexRow, indexCol);
+                    if (board[indexRow][indexCol] == 0) {
+                        revealCells(indexRow, indexCol);
                     }
                 }
             }
@@ -121,7 +119,7 @@ function checkWin() { //checks if you've won the game
             }
         }
     }
-    if (numberOfCellsRevealed == (numberLines * numberCols) - numberBombs) {
+    if (numberOfCellsRevealed == (numberLines * numberCols) - numberBombs && lostMessage.style.display == "none") {
         wonMessage.style.display = "block";
     }
 }
@@ -134,7 +132,9 @@ function endGame() { // checks if you've lost the game
             }
         }
     }
-    lostMessage.style.display = "block";
+    if (wonMessage.style.display == "none") {
+        lostMessage.style.display = "block";
+    }
 }
 
 function restartGame() {
